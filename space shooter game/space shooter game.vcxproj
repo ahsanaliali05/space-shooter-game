@@ -128,15 +128,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="boss.cpp" />
+    <ClCompile Include="bossbullet.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="playerbullet.cpp" />
     <ClCompile Include="ship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boss.h" />
+    <ClInclude Include="bossbullet.h" />
+    <ClInclude Include="bullet.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="playerbullet.h" />
     <ClInclude Include="ship.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
