@@ -12,10 +12,23 @@ void Player::Update(float dt) {
         pos.x -= 300 * dt;
     if (IsKeyDown(KEY_RIGHT))
         pos.x += 300 * dt;
+    if (IsKeyDown(KEY_UP))
+    {
+        pos.y -= 300 * dt;
+    }
+    if (IsKeyDown(KEY_DOWN))
+    {
+        pos.y += 300 * dt;
+
+    }
+    if (pos.y > 580)
+        pos.y = 580;
+    if (pos.y < 0)
+        pos.y = 0;
     if (pos.x < 0)
-        pos.x = 0;
-    if (pos.x > 780)
         pos.x = 780;
+    if (pos.x > 780)
+        pos.x = 0;
 }
 
 void Player::Draw() const {
