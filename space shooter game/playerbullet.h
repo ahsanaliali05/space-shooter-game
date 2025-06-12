@@ -1,15 +1,22 @@
 #ifndef PLAYER_BULLET_H
 #define PLAYER_BULLET_H
 
-#include "Bullet.h"
+#include "raylib.h"
+#include "Bullet.h"  
 
 class PlayerBullet : public Bullet {
 public:
-    PlayerBullet(Vector2 p);
-    void Update(float dt) override;
+  
+    PlayerBullet(Vector2 position, float speed);
+
+
+    ~PlayerBullet() override;
+
+ 
+    void Update(float deltaTime) override;
     void Draw() const override;
+
     bool IsFromPlayer() const override;
 };
 
-#endif
-
+#endif // PLAYER_BULLET_H
