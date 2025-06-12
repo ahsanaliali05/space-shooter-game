@@ -143,6 +143,7 @@
     <ClInclude Include="bossbullet.h" />
     <ClInclude Include="bullet.h" />
     <ClInclude Include="collision.h" />
+    <ClInclude Include="dynamic_array.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerbullet.h" />

@@ -1,6 +1,6 @@
-// PowerUp.h
 #ifndef POWERUP_H
 #define POWERUP_H
+
 #include "raylib.h"
 #include "Player.h"
 
@@ -12,7 +12,7 @@ public:
     PowerUp(Vector2 p);
     virtual ~PowerUp();
 
-    void Update(float dt);
+    virtual void Update(float dt);
     virtual void Apply(Player& p) = 0;
     virtual void Draw() const = 0;
 };
@@ -20,7 +20,7 @@ public:
 class HealthPowerUp : public PowerUp {
 public:
     HealthPowerUp(Vector2 p);
-    ~HealthPowerUp();
+    ~HealthPowerUp() override;
 
     void Apply(Player& pl) override;
     void Draw() const override;
@@ -29,10 +29,19 @@ public:
 class BulletPowerUp : public PowerUp {
 public:
     BulletPowerUp(Vector2 p);
-    ~BulletPowerUp();
+    ~BulletPowerUp() override;
 
     void Apply(Player& pl) override;
     void Draw() const override;
 };
 
-#endif
+class SpeedPowerUp : public PowerUp {
+public:
+    SpeedPowerUp(Vector2 p);
+    ~SpeedPowerUp() override;
+
+    void Apply(Player& pl) override;
+    void Draw() const override;
+};
+
+#endif // POWERUP_H
