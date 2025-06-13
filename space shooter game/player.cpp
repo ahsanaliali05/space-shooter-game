@@ -17,7 +17,7 @@ void Player::Update(float dt) {
         currentSpeed = speed;
     }
 
-    if (isSpeedBoosted) {
+    if (isSpeedBoosted) {     
         if (steady_clock::now() >= speedBoostEndTime) {
             isSpeedBoosted = false;
         }
