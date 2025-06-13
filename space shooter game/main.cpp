@@ -16,7 +16,7 @@ int main() {
                                           // FPS set kar rahe hain taake game smooth chale
     SetTargetFPS(60);
                                            // Player ka object bana rahe hain  AHSAN don
-    Player Ahsan;
+    Player player;
 
                                    // Bullets, enemies aur power-ups ko store karne ke liye dynamic arrays
     Dynamic_array<Bullet*> bullets;
@@ -29,18 +29,24 @@ int main() {
     int level = 1;     // Game ka current level
     float playerShootTimer = 0; // Player kab shoot kar sakta hai (cooldown)
 
-   
-    while (!WindowShouldClose())
-    {
 
-    }
+    // Main game loop jab tak window close nahi hoti
+    while (!WindowShouldClose()) {
+        // Frame ka delta time mil raha hai (movement smooth banane ke liye)
+        float dt = GetFrameTime();
 
+        // Drawing start kar rahe hain
+        BeginDrawing();
 
+        // Har level ka background alag hoga
+        if (level == 1)
+            ClearBackground(BLACK);
+        else if (level == 2)
+            ClearBackground(DARKBLUE);
+        else
+            ClearBackground(DARKGRAY);
 
-
-
-
-
+       
 
   /*  CloseWindow();*/
 
