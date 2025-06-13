@@ -1,39 +1,72 @@
-// Player.cpp
 #include "Player.h"
 #include "raylib.h"
+using namespace std::chrono;
 
-Player::Player() : lives(100), bulletLevel(1) {
+Player::Player() : maxHealth(100.0f), currentHealth(100.0f), bulletLevel(1), speed(300.0f), isSpeedBoosted(false) {
     pos = { 390, 550 };
 }
+
 Player::~Player() {}
 
 void Player::Update(float dt) {
-    if (IsKeyDown(KEY_LEFT))
-        pos.x -= 300 * dt;
-    if (IsKeyDown(KEY_RIGHT))
-        pos.x += 300 * dt;
-    if (IsKeyDown(KEY_UP))
-    {
-        pos.y -= 300 * dt;
-    }
-    if (IsKeyDown(KEY_DOWN))
-    {
-        pos.y += 300 * dt;
+    float currentSpeed = isSpeedBoosted ? speed * 2 : speed;
 
+    if (isSpeedBoosted && steady_clock::now() >= speedBoostEndTime) {
+        isSpeedBoosted = false;
     }
-    if (pos.y > 580)
-        pos.y = 580;
-    if (pos.y < 0)
-        pos.y = 0;
-    if (pos.x < 0)
-        pos.x = 780;
-    if (pos.x > 780)
-        pos.x = 0;
+
+    if (IsKeyDown(KEY_LEFT)) pos.x -= currentSpeed * dt;
+    if (IsKeyDown(KEY_RIGHT)) pos.x += currentSpeed * dt;
+    if (IsKeyDown(KEY_UP)) pos.y -= currentSpeed * dt;
+    if (IsKeyDown(KEY_DOWN)) pos.y += currentSpeed * dt;
+
+    if (pos.y > 580) pos.y = 580;
+    if (pos.y < 0) pos.y = 0;
+    if (pos.x < 0) pos.x = 780;
+    if (pos.x > 780) pos.x = 0;
 }
 
 void Player::Draw() const {
     DrawRectangleV(pos, { 20, 20 }, BLUE);
 }
 
-void Player::AddLife() { lives++; }
-void Player::UpgradeBullet() { if (bulletLevel < 3) bulletLevel++; }
+void Player::DrawHealthBar() const {
+    float healthBarWidth = 200;
+    float healthPercentage = currentHealth / maxHealth;
+    Color healthColor = healthPercentage > 0.66f ? GREEN :
+        healthPercentage > 0.33f ? YELLOW : RED;
+
+    DrawRectangle(300, 10, healthBarWidth, 20, GRAY);
+    DrawRectangle(300, 10, healthBarWidth * healthPercentage, 20, healthColor);
+    DrawRectangleLines(300, 10, healthBarWidth, 20, WHITE);
+    DrawText(TextFormat("%.0f/%.0f", currentHealth, maxHealth), 310, 12, 16, BLACK);
+}
+
+void Player::TakeDamage() {
+    float damage = maxHealth * 0.33f;
+    currentHealth -= damage;
+    if (currentHealth < 0) currentHealth = 0;
+}
+
+void Player::Heal(float amount) {
+    currentHealth += amount;
+    if (currentHealth > maxHealth) currentHealth = maxHealth;
+}
+
+void Player::AddMaxHealth(float amount) {
+    maxHealth += amount;
+    currentHealth += amount;
+}
+
+void Player::UpgradeBullet() {
+    if (bulletLevel < 3) bulletLevel++;
+}
+
+void Player::ActivateSpeedBoost(int durationSeconds) {
+    isSpeedBoosted = true;
+    speedBoostEndTime = steady_clock::now() + seconds(durationSeconds);
+}
+
+bool Player::IsAlive() const {
+    return currentHealth > 0;
+}
