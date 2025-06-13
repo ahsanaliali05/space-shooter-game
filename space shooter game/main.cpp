@@ -16,7 +16,7 @@ int main() {
                                           // FPS set kar rahe hain taake game smooth chale
     SetTargetFPS(60);
                                            // Player ka object bana rahe hain  AHSAN don
-    Player player;
+    Player AHSAN;
 
                                    // Bullets, enemies aur power-ups ko store karne ke liye dynamic arrays
     Dynamic_array<Bullet*> bullets;
@@ -26,7 +26,7 @@ int main() {
     Boss* boss = nullptr;
     bool gameOver = false;
     int kills = 0;     // Enemies kitne mar chuke hain
-    int level = 1;     // Game ka current level
+    int level = 3;     // Game ka current level
     float playerShootTimer = 0; // Player kab shoot kar sakta hai (cooldown)
 
 
@@ -45,10 +45,23 @@ int main() {
             ClearBackground(DARKBLUE);
         else
             ClearBackground(DARKGRAY);
+        // AHSAN update hoga agar zinda ho aur game over na ho
+        if (!gameOver && AHSAN.IsAlive()) {
+            AHSAN.Update(dt);
+        }
 
+        // Shooting ke liye timer reduce ho raha hai
+        playerShootTimer -= dt;
+
+        // Space dabane pe AHSAN shoot karega agar cooldown khatam ho gaya ho
+        if (IsKeyDown(KEY_SPACE) && playerShootTimer <= 0 && !gameOver && AHSAN.IsAlive()) {
+            playerShootTimer = 0.2f; // Shooting cooldown reset
+
+
+    // Window close karo
        
 
-  /*  CloseWindow();*/
+    CloseWindow();
 
     return 0;
 }
