@@ -16,11 +16,12 @@ public:
     bool isSpeedBoosted;
     steady_clock::time_point speedBoostEndTime;
 
+
     Player();
     ~Player();
 
     void Update(float dt) override;
-    void Draw() const override;
+    void Draw(Texture2D texture) const override;
     void DrawHealthBar() const;
 
     void TakeDamage();

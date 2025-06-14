@@ -51,9 +51,13 @@ void Player::Update(float dt) {
     }
 }
 
-void Player::Draw() const {
+void Player::Draw(Texture2D texture ) const {
     DrawRectangleV(pos, { 25, 25 }, BLUE);
-}
+    DrawTexture(texture, pos.x-25.0f, pos.y-25.0f, WHITE);
+ }
+
+
+
 
 void Player::DrawHealthBar() const {
     float healthBarWidth = 200;

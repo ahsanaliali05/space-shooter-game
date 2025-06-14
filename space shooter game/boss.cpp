@@ -34,7 +34,7 @@ void Boss::ResetShootTimer()
     shootTimer = 1.2f;
 }
 
-void Boss::Draw() const {
+void Boss::Draw(Texture2D texture) const {
     DrawRectangleV(pos, { 40, 40 }, DARKPURPLE);
     DrawText(TextFormat("Boss HP: %d", hp), 10, 60, 20, MAROON);
 }

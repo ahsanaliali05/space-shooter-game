@@ -15,8 +15,14 @@ int main() {
     InitWindow(800, 600, "Shooter with Health Bar System");
                                           // FPS set kar rahe hain taake game smooth chale
     SetTargetFPS(60);
-                                           // Player ka object bana rahe hain  AHSAN don
+
+
+    Texture2D playerTexture = LoadTexture("spaceship3.png");
+
+        
+    // Player ka object bana rahe hain  AHSAN don
     Player AHSAN;
+
 
                                    // Bullets, enemies aur power-ups ko store karne ke liye dynamic arrays
     Dynamic_array<Bullet*> bullets;
@@ -208,7 +214,7 @@ int main() {
         // ---------------- Drawing Section ----------------
 
         if (AHSAN.IsAlive())
-            AHSAN.Draw();
+            AHSAN.Draw(playerTexture);
 
         for (int i = 0; i < bullets.size(); i++) {
             if (bullets[i]->active)
@@ -216,13 +222,13 @@ int main() {
         }
 
         for (int i = 0; i < enemies.size(); i++)
-            enemies[i]->Draw();
+            enemies[i]->Draw(playerTexture);
 
         for (int i = 0; i < powerUps.size(); i++)
             powerUps[i]->Draw();
 
         if (boss)
-            boss->Draw();
+            boss->Draw(playerTexture);
 
         // Health bar draw kar rahe hain
         AHSAN.DrawHealthBar();
@@ -267,7 +273,8 @@ int main() {
     }
     delete boss;
     // Window close karo
-       
+    UnloadTexture(playerTexture);
+
 
     CloseWindow();
 

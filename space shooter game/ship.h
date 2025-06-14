@@ -10,7 +10,7 @@ public:
     virtual ~Ship();
 
     virtual void Update(float dt) = 0;
-    virtual void Draw() const = 0;
+    virtual void Draw(Texture2D texture) const = 0;
 };
 
 #endif

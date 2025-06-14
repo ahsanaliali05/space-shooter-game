@@ -11,4 +11,4 @@ void Enemy::Update(float dt)
 {
     pos.y += speed * dt;
 }
-void Enemy::Draw() const { DrawRectangleV(pos, { 20, 20 }, RED); }
+void Enemy::Draw(Texture2D texture) const { DrawRectangleV(pos, { 20, 20 }, RED); }
