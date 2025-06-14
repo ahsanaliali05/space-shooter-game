@@ -9,6 +9,19 @@
 #include "collision.h"
 #include "Dynamic_array.h"
 #include <ctime>
+#include <fstream>
+#include<string>
+#include<iostream>
+using namespace std;
+void log_action(const string& msg) {
+    ofstream log_file("log.txt", ios::app);
+    if (log_file.is_open()) {
+        time_t now = time(0);
+        char* dt = ctime(&now);
+        log_file << "[" << dt << "] " << msg << endl;
+        log_file.close();
+    }
+}
 
 int main() {
                                           // Game ki window create ho rahi hai (800x600 pixels)
