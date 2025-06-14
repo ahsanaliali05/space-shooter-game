@@ -150,6 +150,9 @@
     <ClInclude Include="powerup.h" />
     <ClInclude Include="ship.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="enemyship.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -18,6 +18,7 @@ int main() {
 
 
     Texture2D playerTexture = LoadTexture("spaceship3.png");
+    Texture2D enemyTexture = LoadTexture("enemyship.png");
 
         
     // Player ka object bana rahe hain  AHSAN don
@@ -222,13 +223,13 @@ int main() {
         }
 
         for (int i = 0; i < enemies.size(); i++)
-            enemies[i]->Draw(playerTexture);
+            enemies[i]->Draw(enemyTexture);
 
         for (int i = 0; i < powerUps.size(); i++)
             powerUps[i]->Draw();
 
         if (boss)
-            boss->Draw(playerTexture);
+            boss->Draw(enemyTexture);
 
         // Health bar draw kar rahe hain
         AHSAN.DrawHealthBar();
