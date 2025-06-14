@@ -157,7 +157,7 @@ int main() {
                     }
                 }
             }
-            // Enemy bullet hits AHSAN
+            // boss bullet hits AHSAN
             else if (CheckCollisionCircles(bullets[i]->pos, 5.0f, AHSAN.pos, 10.0f) && AHSAN.IsAlive()) {
                 AHSAN.TakeDamage();
                 bullets[i]->active = false;
@@ -166,7 +166,7 @@ int main() {
 
         // Enemy hits AHSAN
         for (int i = enemies.size() - 1; i >= 0; i--) {
-            if (CheckCollisionCircles(enemies[i]->pos, 10.0f, AHSAN.pos, 10.0f) && AHSAN.IsAlive()) {
+            if (CheckCollisionCircles(enemies[i]->pos, 10.0f, AHSAN.pos, 15.0f) && AHSAN.IsAlive()) {
                 AHSAN.TakeDamage();
                 delete enemies[i];
                 enemies.delete_at(i);

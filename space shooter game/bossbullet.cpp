@@ -11,7 +11,7 @@ void BossBullet::Update(float dt) {
 }
 
 void BossBullet::Draw() const {
-    DrawCircleV(pos, 5, ORANGE);
+    DrawCircleV(pos, 8, ORANGE);
 }
 
 bool BossBullet::IsFromPlayer() const {

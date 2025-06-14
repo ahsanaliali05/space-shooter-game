@@ -11,7 +11,7 @@ void PlayerBullet::Update(float dt) {
 }
 
 void PlayerBullet::Draw() const {
-    DrawCircleV(pos, 5, YELLOW);
+    DrawCircleV(pos, 8, YELLOW);
 }
 
 bool PlayerBullet::IsFromPlayer() const {

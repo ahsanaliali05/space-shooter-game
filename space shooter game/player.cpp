@@ -17,7 +17,7 @@ void Player::Update(float dt) {
         currentSpeed = speed;
     }
 
-    if (isSpeedBoosted) {     
+    if (isSpeedBoosted) {
         if (steady_clock::now() >= speedBoostEndTime) {
             isSpeedBoosted = false;
         }
@@ -52,7 +52,7 @@ void Player::Update(float dt) {
 }
 
 void Player::Draw() const {
-    DrawRectangleV(pos, { 20, 20 }, BLUE);
+    DrawRectangleV(pos, { 25, 25 }, BLUE);
 }
 
 void Player::DrawHealthBar() const {
@@ -75,7 +75,6 @@ void Player::DrawHealthBar() const {
     DrawRectangle(300, 10, healthBarWidth, 20, GRAY);
     DrawRectangle(300, 10, healthBarWidth * healthPercentage, 20, healthColor);
     DrawRectangleLines(300, 10, healthBarWidth, 20, WHITE);
-    DrawText(TextFormat("%.0f/%.0f", currentHealth, maxHealth), 310, 12, 16, BLACK);
 }
 
 void Player::TakeDamage() {
