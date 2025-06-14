@@ -19,6 +19,7 @@ int main() {
 
     Texture2D playerTexture = LoadTexture("spaceship3.png");
     Texture2D enemyTexture = LoadTexture("enemyship.png");
+    Texture2D bossTexture = LoadTexture("boss.png");
 
         
     // Player ka object bana rahe hain  AHSAN don
@@ -33,7 +34,7 @@ int main() {
     Boss* boss = nullptr;
     bool gameOver = false;
     int kills = 0;     // Enemies kitne mar chuke hain
-    int level = 1;     // Game ka current level
+    int level = 3;     // Game ka current level
     float playerShootTimer = 0; // Player kab shoot kar sakta hai (cooldown)
 
 
@@ -153,7 +154,7 @@ int main() {
                 }
 
                 // Boss collision
-                if (!removed && boss && CheckCollisionCircles(bullets[i]->pos, 5.0f, boss->pos, 20.0f)) {
+                if (!removed && boss && CheckCollisionCircles(bullets[i]->pos, 5.0f, boss->pos, 25.0f)) {
                     boss->hp -= 10;
                     bullets[i]->active = false;
 
@@ -229,7 +230,7 @@ int main() {
             powerUps[i]->Draw();
 
         if (boss)
-            boss->Draw(enemyTexture);
+            boss->Draw(bossTexture);
 
         // Health bar draw kar rahe hain
         AHSAN.DrawHealthBar();
@@ -275,6 +276,8 @@ int main() {
     delete boss;
     // Window close karo
     UnloadTexture(playerTexture);
+    UnloadTexture(enemyTexture);
+    UnloadTexture(bossTexture);
 
 
     CloseWindow();
