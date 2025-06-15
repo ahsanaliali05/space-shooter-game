@@ -132,6 +132,7 @@
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="collision.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="playerbullet.cpp" />
@@ -145,10 +146,14 @@
     <ClInclude Include="collision.h" />
     <ClInclude Include="dynamic_array.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="logger.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="playerbullet.h" />
     <ClInclude Include="powerup.h" />
     <ClInclude Include="ship.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="logger.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

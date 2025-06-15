@@ -12,23 +12,15 @@
 #include <fstream>
 #include<string>
 #include<iostream>
-using namespace std;
-void log_action(const string& msg) {
-    ofstream log_file("log.txt", ios::app);
-    if (log_file.is_open()) {
-        time_t now = time(0);
-        char* dt = ctime(&now);
-        log_file << "[" << dt << "] " << msg << endl;
-        log_file.close();
-    }
-}
+#include"logger.h"
+
 
 int main() {
-                                          // Game ki window create ho rahi hai (800x600 pixels)
+                       // Game ki window create ho rahi hai (800x600 pixels)
     InitWindow(800, 600, "Shooter with Health Bar System");
                                           // FPS set kar rahe hain taake game smooth chale
     SetTargetFPS(60);
-
+    log_action("Game started");
 
     Texture2D playerTexture = LoadTexture("spaceship3.png");
     Texture2D enemyTexture = LoadTexture("enemyship.png");
@@ -47,7 +39,7 @@ int main() {
     Boss* boss = nullptr;
     bool gameOver = false;
     int kills = 0;     // Enemies kitne mar chuke hain
-    int level = 3;     // Game ka current level
+    int level = 1;     // Game ka current level
     float playerShootTimer = 0; // Player kab shoot kar sakta hai (cooldown)
 
 
@@ -77,6 +69,7 @@ int main() {
         // Space dabane pe AHSAN shoot karega agar cooldown khatam ho gaya ho
         if (IsKeyDown(KEY_SPACE) && playerShootTimer <= 0 && !gameOver && AHSAN.IsAlive()) {
             playerShootTimer = 0.2f; // Shooting cooldown reset
+            log_action("Player fired a bullet.");
             // Bullet Level 1: Sirf center se fire hoga
             if (AHSAN.bulletLevel == 1) {
                 bullets.push_back(new PlayerBullet(Vector2{ AHSAN.pos.x + 10.0f, AHSAN.pos.y }, 400.0f));
@@ -124,6 +117,7 @@ int main() {
         // Level 3 pe boss spawn hoga
         if (level == 3 && boss == nullptr && AHSAN.IsAlive()) {
             boss = new Boss();
+            log_action("Boss spawned.");
         }
 
         // Boss shooting karega agar ready ho
@@ -175,6 +169,7 @@ int main() {
                         delete boss;
                         boss = nullptr;
                         gameOver = true;
+                        log_action("Game over: Boss defeated.");
                     }
                 }
             }
@@ -211,6 +206,7 @@ int main() {
             }
             enemies.clear();
             level = 2;
+            log_action("Level up: Reached Level 2.");
         }
         else if (level == 2 && kills >= 25 && AHSAN.IsAlive()) {
             for (int i = 0; i < enemies.size(); i++)
@@ -219,11 +215,13 @@ int main() {
             }
             enemies.clear();
             level = 3;
+            log_action("Level up: Reached Level 3.");
         }
 
         // AHSAN mar gaya to game over
         if (!AHSAN.IsAlive() && !gameOver) {
             gameOver = true;
+            log_action("Game over: Player died.");
         }
 
         // ---------------- Drawing Section ----------------
