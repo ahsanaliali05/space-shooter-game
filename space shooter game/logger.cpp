@@ -10,3 +10,7 @@ void log_action(const string& msg) {
         log_file.close();
     }
 }
+void ClearLogger() {
+    std::ofstream file("logger.txt", std::ios::out);
+    file.close();
+}

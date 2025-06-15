@@ -289,7 +289,7 @@ int main() {
     UnloadTexture(playerTexture);
     UnloadTexture(enemyTexture);
     UnloadTexture(bossTexture);
-
+    ClearLogger();
 
     CloseWindow();
 

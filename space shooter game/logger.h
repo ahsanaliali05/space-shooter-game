@@ -9,6 +9,7 @@
 #include <ctime>
 
 void log_action(const std::string& msg);
+void ClearLogger();
 
 #endif // LOGGER_H
 #pragma once
